@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4f1eb">
+<title>24 Clothes — Signature Collection</title>
+<meta name="description" content="24 Clothes — timeless essentials, modern identity. Explore the collection and order on WhatsApp.">
+<style>
+:root{--bg:#f4f1eb;--ink:#171715;--muted:#77736c;--line:#dcd7ce;--white:#fffdf9}
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif!important}
+html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink)}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+.announcement{height:30px;background:#191917;color:#f7f4ee;display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
+header{min-height:90px;padding:5px 6%;display:flex;align-items:center;justify-content:space-between;position:relative;border-bottom:1px solid var(--line);background:var(--bg);z-index:50}
+.brand{width:76px;height:76px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:50%;flex-shrink:0;background:#fffdf9;border:1px solid #e5dfd5}
+.brand img{width:100%;height:100%;object-fit:contain;border-radius:50%;display:block;padding:2px}
+.menu-toggle{width:44px;height:44px;border:1px solid var(--line);background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;transition:.2s}
+.menu-toggle:hover{background:#e9e3d9}.menu-toggle span{display:block;width:19px;height:2px;background:#191917;transition:.25s}
+.menu-toggle.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}.menu-toggle.active span:nth-child(2){opacity:0}.menu-toggle.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.menu-panel{position:absolute;top:calc(100% + 1px);right:6%;width:210px;background:#fffdf9;border:1px solid var(--line);box-shadow:0 12px 30px #00000012;padding:10px 0;display:none;z-index:100}
+.menu-panel.open{display:block}.menu-panel a{display:block;padding:15px 22px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;transition:.2s}.menu-panel a:hover{background:#f0ece4;padding-left:28px}
+.hero{text-align:center;padding:76px 20px 38px}.eyebrow{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#8b765e;font-weight:700}
+h1{font-size:clamp(46px,7vw,76px);line-height:.98;font-weight:800;letter-spacing:-2.8px;margin:20px 0 15px}
+.hero h3{font-size:clamp(36px,5vw,54px);line-height:1.1;font-weight:800;letter-spacing:-1.5px;margin:20px 0 15px}
+.hero p{max-width:440px;margin:0 auto;color:#6e6961;font-size:15px;line-height:1.8}
+.hero-cta{display:inline-block;margin-top:25px;background:#191917;color:white;padding:15px 25px;font-size:9px;letter-spacing:2px;text-transform:uppercase;border:1px solid #191917;transition:.2s;font-weight:700}
+.hero-cta:hover{background:transparent;color:#191917}
+.hero-image{margin:0 auto;width:88%;height:clamp(240px,38vw,470px);background:#e5ded2 url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1800&q=90') center 38%/cover no-repeat}
+.collection-head{text-align:center;padding:72px 15px 20px}.collection-head h2{font-size:40px;font-weight:800;margin:12px 0 8px}.collection-head p{font-size:14px;color:var(--muted);margin:0}
+.filters{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;padding:25px 15px 35px}
+.filter{background:transparent;border:1px solid var(--line);padding:10px 17px;color:#5d5952;font-size:9px;letter-spacing:1.3px;text-transform:uppercase;font-weight:600}
+.filter.active,.filter:hover{background:var(--ink);border-color:var(--ink);color:white}
+.products{padding:0 7% 82px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:23px}.product-card{min-width:0}
+.photo{position:relative;aspect-ratio:3/4;background:#e6e0d6;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}.product-card:hover .photo img{transform:scale(1.035)}
+.tag{position:absolute;top:12px;left:12px;background:#f8f5ee;padding:7px 9px;font-size:8px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:#23834a}
+.details{padding:14px 1px}.details h3{font-size:18px;font-weight:800;color:#171715;margin:0 0 10px;line-height:1.4}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:8px;color:#5f5a52;font-size:12px}.meta strong{color:#171715;font-size:15px;font-weight:800;white-space:nowrap}
+.view{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #191917;background:#191917;color:#fffdf9;padding:11px 16px;margin-top:15px;font-size:9px;letter-spacing:1.3px;text-transform:uppercase;font-weight:700;transition:.25s}
+.view:hover{background:transparent;color:#191917}
+.story{background:#e9e3d9;display:grid;grid-template-columns:1fr 1fr}.story-photo{min-height:390px;background:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=85') center/cover}
+.story-copy{padding:65px 12%;display:flex;flex-direction:column;justify-content:center}.story-copy h2{font-size:40px;font-weight:800;line-height:1.1;margin:15px 0}.story-copy p{font-size:14px;line-height:1.9;color:#666158;max-width:390px}
+.values{display:grid;grid-template-columns:repeat(3,1fr);padding:42px 6%;text-align:center;gap:15px;border-bottom:1px solid var(--line)}
+.values strong{display:block;font-size:18px;font-weight:700;margin-bottom:8px}.values span{font-size:10px;color:var(--muted)}
+footer{background:#191917;color:#f4f1eb;padding:50px 7% 22px}.foot-top{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}
+.foot-logo{font-size:35px;font-weight:800}.foot-logo small{display:block;font:700 8px Arial,sans-serif;letter-spacing:4px;margin-top:5px}
+.foot-note{font-size:13px;line-height:1.8;color:#bdb7ac;max-width:270px}.foot-contact{display:flex;flex-direction:column;gap:13px}
+.foot-contact h3{font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:0 0 4px;font-weight:700}
+.social-links{display:flex;gap:12px;align-items:center}.social-links a{width:38px;height:38px;border:1px solid #625e55;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.25s}
+.social-links a:hover{background:#f4f1eb;color:#191917;border-color:#f4f1eb;transform:translateY(-3px)}.social-links svg{width:17px;height:17px;fill:currentColor}
+.contact-details{display:flex;flex-direction:column;gap:9px;font-size:11px;color:#bdb7ac}.contact-details a:hover{color:white}
+.copyright{border-top:1px solid #44413b;margin-top:38px;padding-top:17px;color:#aaa398;font-size:9px;letter-spacing:1.3px}
+.floating-whatsapp{position:fixed;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;background:#25D366;color:white;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 15px #0003;transition:.25s}
+.floating-whatsapp:hover{transform:scale(1.08)}.floating-whatsapp svg{width:30px;height:30px;fill:white}
+.backdrop{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;padding:16px;z-index:100}.backdrop.open{display:flex}
+.modal{position:relative;width:min(760px,100%);max-height:92vh;overflow:auto;background:var(--white);display:grid;grid-template-columns:1fr 1fr}
+.modal>img{width:100%;height:100%;min-height:390px;object-fit:cover}.modal-content{padding:35px 28px}
+.close{position:absolute;right:10px;top:8px;border:0;background:var(--white);font-size:25px}.modal h3{font-size:29px;font-weight:800;margin:12px 0}
+.price{margin:12px 0 18px;font-weight:700}.desc{font-size:13px;line-height:1.7;color:var(--muted)}
+label{display:block;margin:18px 0 8px;font-size:9px;letter-spacing:1.3px;text-transform:uppercase;font-weight:700}
+select,input{width:100%;padding:12px;border:1px solid var(--line);background:white}
+.order{width:100%;margin-top:19px;border:1px solid var(--ink);background:var(--ink);color:white;padding:15px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+.order:hover{background:transparent;color:var(--ink)}.hint{font-size:10px;line-height:1.6;color:var(--muted)}
+@media(max-width:850px){.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.hero-image{width:92%}}
+@media(max-width:600px){
+header{min-height:76px;padding:5px 5%}.brand{width:64px;height:64px}.menu-toggle{width:42px;height:42px}.menu-panel{right:5%;width:190px}
+.hero{padding:58px 18px 28px}.hero h3{font-size:39px;letter-spacing:-1.2px}.hero p{font-size:14px}
+.hero-image{width:100%;height:290px}.collection-head{padding-top:55px}.collection-head h2{font-size:34px}
+.products{padding:0 4% 58px;gap:15px}.details h3{font-size:16px;line-height:1.4}.meta{font-size:10px}.meta strong{font-size:14px}
+.view{padding:10px 12px;font-size:8px;margin-top:13px}
+.story{grid-template-columns:1fr}.story-photo{min-height:310px}.story-copy{padding:48px 8%}
+.values{padding:32px 4%;gap:8px}.values strong{font-size:15px}.values span{font-size:9px}
+.modal{grid-template-columns:1fr}.modal>img{height:245px;min-height:245px}.modal-content{padding:24px}
+.foot-top{gap:30px}.floating-whatsapp{width:54px;height:54px;right:16px;bottom:16px}
+}
+</style>
+</head>
+<body>
+<div class="announcement">A considered wardrobe · 24 Clothes</div>
+<header>
+<a class="brand" href="#" aria-label="24 Clothes Home"><img src="https://i.postimg.cc/9fc6BwTv/1794418799097.jpg" alt="24 Clothes Logo"></a>
+<button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" type="button"><span></span><span></span><span></span></button>
+<nav class="menu-panel" id="menuPanel"><a href="#collection">Shop</a><a href="#story">Our Story</a><a href="#contact">Contact</a></nav>
+</header>
+<main>
+<section class="hero">
+<div class="eyebrow">24 Clothes · Everyday, elevated</div>
+<h3>Dream Your Style 𖹭</h3>
+<p>Timeless essentials. Modern identity. Discover thoughtfully selected pieces made for your everyday style.</p>
+<a class="hero-cta" href="#collection">Explore Collection</a>
+</section>
+<div class="hero-image" role="img" aria-label="24 Clothes fashion editorial"></div>
+<section id="collection">
+<div class="collection-head"><div class="eyebrow">The edit</div><h2>Our Collection</h2><p>Find your fit. Keep your style.</p></div>
+<div class="filters">
+<button class="filter active" data-filter="All">All Pieces</button><button class="filter" data-filter="T-Shirts">T-Shirts</button><button class="filter" data-filter="Shirts">Shirts</button><button class="filter" data-filter="Denim">Denim</button>
+</div>
+<div class="products" id="productGrid"></div>
+</section>
+<section class="story" id="story">
+<div class="story-photo" role="img" aria-label="Modern everyday fashion"></div>
+<div class="story-copy"><div class="eyebrow">The 24 Clothes point of view</div><h2>Less, but better.</h2><p>Great style lives in the details: the right fit, the feel of the fabric and pieces you reach for again and again. Welcome to 24 Clothes.</p></div>
+</section>
+<section class="values">
+<div><strong>Considered Style</strong><span>Everyday pieces, thoughtfully chosen</span></div>
+<div><strong>Easy Ordering</strong><span>Order directly through WhatsApp</span></div>
+<div><strong>Personal Service</strong><span>We’ll help you find your fit</span></div>
+</section>
+</main>
+<footer id="contact">
+<div class="foot-top">
+<div class="foot-logo">24C<small>SIGNATURE</small></div>
+<p class="foot-note">Minimal style. Maximum identity.<br>Thank you for being part of 24 Clothes.</p>
+<div class="foot-contact">
+<h3>Connect With Us</h3>
+<div class="social-links">
+<a href="https://www.instagram.com/24clothesofficial/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.5-3a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg></a>
+<a href="https://wa.me/8801724598086" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.2 1.6 6L0 24l6.4-1.7a11.8 11.8 0 0 0 5.7 1.5h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.3-6.2-3.5-8.5zM12.1 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.3-.4a9.8 9.8 0 1 1 8.5 4.7zm5.4-7.3c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.2-.4-2.3-1.4-.9-.8-1.5-1.7-1.7-2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.5s1.1 2.8 1.3 3c.2.2 2.1 3.2 5.1 4.5.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.1-1.4-.1-.1-.3-.2-.6-.3z"/></svg></a>
+<a href="https://www.tiktok.com/@24clothesofficial" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M19.6 6.2c-1.4-.9-2.3-2.3-2.5-4V1h-3.8v15.2a3.2 3.2 0 1 1-3.2-3.2c.3 0 .7 0 1 .1V9.2a7.2 7.2 0 1 0 6 7.1V8.6a9 9 0 0 0 5.2 1.7V6.5c-1 0-1.9-.1-2.7-.3z"/></svg></a>
+<a href="https://www.facebook.com/24clothesofficial" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v1.8H7v3.1h2.8v8h3.7z"/></svg></a>
+</div>
+<div class="contact-details"><a href="mailto:24clothesofficial@gmail.com">Email: 24clothesofficial@gmail.com</a><a href="https://wa.me/8801724598086" target="_blank" rel="noopener">WhatsApp: +8801724598086</a></div>
+</div>
+</div>
+<div class="copyright">© <span id="year"></span> 24 CLOTHES. ALL RIGHTS RESERVED.</div>
+</footer>
+<a class="floating-whatsapp" href="https://wa.me/8801724598086?text=Hello%2024%20Clothes!%20I%20would%20like%20to%20know%20more%20about%20your%20collection." target="_blank" rel="noopener" aria-label="Chat with 24 Clothes on WhatsApp" title="Chat with us on WhatsApp">
+<svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.2 1.6 6L0 24l6.4-1.7a11.8 11.8 0 0 0 5.7 1.5h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.3-6.2-3.5-8.5zM12.1 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.3-.4a9.8 9.8 0 1 1 8.5 4.7zm5.4-7.3c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.2-.4-2.3-1.4-.9-.8-1.5-1.7-1.7-2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.5s1.1 2.8 1.3 3c.2.2 2.1 3.2 5.1 4.5.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.1-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+</a>
+<div class="backdrop" id="backdrop" role="dialog" aria-modal="true" aria-label="Product details">
+<div class="modal">
+<button class="close" id="close" aria-label="Close">×</button><img id="modalImage" src="" alt="">
+<div class="modal-content"><div class="eyebrow">24 Clothes · Signature</div><h3 id="modalName"></h3><div class="price" id="modalPrice"></div><p class="desc" id="modalDesc"></p>
+<label for="size">Select size</label><select id="size"><option value="">Choose your size</option></select>
+<label for="qty">Quantity</label><input id="qty" type="number" min="1" value="1">
+<button class="order" id="order">Order on WhatsApp</button>
+<p class="hint">WhatsApp will open with your product, size and quantity. Your order is confirmed after our reply.</p>
+</div></div></div>
+<script>
+const WHATSAPP_NUMBER="8801724598086";
+const products=[
+{id:1,name:"Essential Boxy T-Shirt",category:"T-Shirts",price:650,tag:"New arrival",image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",sizes:["S","M","L","XL"],description:"A relaxed everyday silhouette with a clean, minimal finish."},
+{id:2,name:"Classic Henley T-Shirt",category:"T-Shirts",price:750,tag:"Everyday essential",image:"https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=85",sizes:["S","M","L","XL"],description:"A timeless Henley-inspired style for effortless everyday dressing."},
+{id:3,name:"Relaxed Boxy Shirt",category:"Shirts",price:950,tag:"New arrival",image:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=900&q=85",sizes:["S","M","L","XL"],description:"An easy, relaxed fit with a versatile and understated look."},
+{id:4,name:"Everyday Baggy Jeans",category:"Denim",price:1450,tag:"New arrival",image:"https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=85",sizes:["28","30","32","34","36"],description:"A relaxed denim silhouette designed for everyday movement."}
+];
+const money=n=>"৳"+Number(n).toLocaleString("en-BD");
+let selected=null;
+const grid=document.getElementById("productGrid");
+const menuToggle=document.getElementById("menuToggle");
+const menuPanel=document.getElementById("menuPanel");
+menuToggle.onclick=()=>{
+const isOpen=menuPanel.classList.toggle("open");
+menuToggle.classList.toggle("active",isOpen);
+menuToggle.setAttribute("aria-expanded",isOpen);
+};
+menuPanel.querySelectorAll("a").forEach(link=>{link.onclick=()=>{
+menuPanel.classList.remove("open");menuToggle.classList.remove("active");menuToggle.setAttribute("aria-expanded","false");
+};});
+document.addEventListener("click",e=>{
+if(!menuToggle.contains(e.target)&&!menuPanel.contains(e.target)){
+menuPanel.classList.remove("open");menuToggle.classList.remove("active");menuToggle.setAttribute("aria-expanded","false");
+}
+});
+function render(filter="All"){
+grid.innerHTML="";
+products.filter(p=>filter==="All"||p.category===filter).forEach(p=>{
+const el=document.createElement("article");el.className="product-card";
+el.innerHTML=`<div class="photo"><img src="${p.image}" alt="${p.name}" loading="lazy"><span class="tag">${p.tag}</span></div>
+<div class="details"><h3>${p.name}</h3><div class="meta"><span>${p.category}</span><strong>${money(p.price)}</strong></div>
+<button class="view" type="button">View Details <span>↗</span></button></div>`;
+el.querySelector("button").onclick=()=>openProduct(p);grid.appendChild(el);
+});
+}
+function openProduct(p){
+selected=p;document.getElementById("modalImage").src=p.image;document.getElementById("modalImage").alt=p.name;
+document.getElementById("modalName").textContent=p.name;document.getElementById("modalPrice").textContent=money(p.price);
+document.getElementById("modalDesc").textContent=p.description;
+document.getElementById("size").innerHTML='<option value="">Choose your size</option>'+p.sizes.map(s=>`<option value="${s}">${s}</option>`).join("");
+document.getElementById("qty").value=1;document.getElementById("backdrop").classList.add("open");
+}
+function closeModal(){document.getElementById("backdrop").classList.remove("open")}
+document.getElementById("close").onclick=closeModal;
+document.getElementById("backdrop").onclick=e=>{if(e.target.id==="backdrop")closeModal()};
+document.querySelectorAll(".filter").forEach(b=>{b.onclick=()=>{
+document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");render(b.dataset.filter);
+};});
+document.getElementById("order").onclick=()=>{
+if(!selected)return;
+const size=document.getElementById("size").value;
+const qty=Math.max(1,parseInt(document.getElementById("qty").value,10)||1);
+if(!size){alert("Please select a size first.");return}
+const msg=`Hello 24 Clothes! I would like to order:
+
+Product: ${selected.name}
+Price: ${money(selected.price)}
+Size: ${size}
+Quantity: ${qty}
+Total: ${money(selected.price*qty)}
+
+Product Photo: ${selected.image}
+
+Please confirm availability and delivery details.`;
+window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(msg),"_blank");
+};
+document.getElementById("year").textContent=new Date().getFullYear();
+render();
+</script>
+</body>
+</html>
