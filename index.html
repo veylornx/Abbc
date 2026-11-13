@@ -15,7 +15,7 @@
 --muted:#77736c;
 --line:#dcd7ce;
 --white:#fffdf9;
---green:#27834b;
+--green:#27834a;
 }
 
 *{
@@ -28,6 +28,7 @@ body{margin:0;background:var(--bg);color:var(--ink)}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer}
 
+/* ANNOUNCEMENT */
 .announcement{
 height:30px;
 background:#191917;
@@ -41,20 +42,22 @@ text-transform:uppercase;
 font-weight:600
 }
 
+/* HEADER */
 header{
-min-height:90px;
+height:88px;
 padding:5px 6%;
-display:grid;
-grid-template-columns:1fr auto 1fr;
+display:flex;
 align-items:center;
+justify-content:space-between;
 border-bottom:1px solid var(--line);
-background:var(--bg)
+background:var(--bg);
+position:relative;
+z-index:50
 }
 
 .brand{
-justify-self:start;
-width:76px;
-height:76px;
+width:74px;
+height:74px;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -62,7 +65,7 @@ overflow:hidden;
 border-radius:50%;
 flex-shrink:0;
 background:#fffdf9;
-border:1px solid #e5dfd5;
+border:1px solid #e5dfd5
 }
 
 .brand img{
@@ -71,80 +74,91 @@ height:100%;
 object-fit:contain;
 border-radius:50%;
 display:block;
-padding:2px;
+padding:2px
 }
 
-/* THREE DOT MENU */
-.menu-wrap{
-justify-self:center;
-position:relative;
-}
-
+/* HAMBURGER BUTTON */
 .menu-button{
-width:42px;
-height:42px;
+width:46px;
+height:46px;
 border:1px solid var(--line);
-border-radius:50%;
 background:transparent;
 display:flex;
+flex-direction:column;
 align-items:center;
 justify-content:center;
-font-size:25px;
-line-height:1;
-color:var(--ink);
-transition:.2s;
+gap:6px;
+transition:.2s
 }
 
 .menu-button:hover{
-background:var(--ink);
-color:white;
+background:#eae5dc
 }
 
+.menu-button span{
+width:20px;
+height:2px;
+background:#191917;
+display:block;
+transition:.25s
+}
+
+.menu-button.active span:nth-child(1){
+transform:translateY(8px) rotate(45deg)
+}
+
+.menu-button.active span:nth-child(2){
+opacity:0
+}
+
+.menu-button.active span:nth-child(3){
+transform:translateY(-8px) rotate(-45deg)
+}
+
+/* DROPDOWN MENU */
 .menu-dropdown{
 position:absolute;
-top:52px;
-left:50%;
-transform:translateX(-50%);
-width:155px;
-background:var(--white);
+top:calc(100% + 1px);
+right:6%;
+width:220px;
+background:#fffdf9;
 border:1px solid var(--line);
-box-shadow:0 8px 25px #00000012;
-display:none;
-flex-direction:column;
-z-index:50;
+box-shadow:0 12px 30px #00000012;
+padding:10px;
+display:none
 }
 
-.menu-dropdown.open{
-display:flex;
+.menu-dropdown.show{
+display:block;
+animation:menuIn .2s ease
+}
+
+@keyframes menuIn{
+from{opacity:0;transform:translateY(-7px)}
+to{opacity:1;transform:translateY(0)}
 }
 
 .menu-dropdown a{
-padding:14px 17px;
-font-size:10px;
-letter-spacing:1.3px;
+display:block;
+padding:16px 14px;
+font-size:11px;
+font-weight:700;
+letter-spacing:1.5px;
 text-transform:uppercase;
-font-weight:600;
 border-bottom:1px solid #eee9e0;
+transition:.2s
 }
 
 .menu-dropdown a:last-child{
-border-bottom:0;
+border-bottom:0
 }
 
 .menu-dropdown a:hover{
-background:#f0ece4;
+background:#f4f1eb;
+padding-left:19px
 }
 
-.right-link{
-justify-self:end;
-font-size:10px;
-letter-spacing:1px;
-text-transform:uppercase;
-font-weight:600
-}
-
-.right-link:hover{opacity:.55}
-
+/* HERO */
 .hero{
 text-align:center;
 padding:76px 20px 38px
@@ -158,19 +172,11 @@ color:#8b765e;
 font-weight:700
 }
 
-h1{
-font-size:clamp(46px,7vw,76px);
-line-height:.98;
-font-weight:800;
-letter-spacing:-2.8px;
-margin:20px 0 15px
-}
-
 .hero h3{
-font-size:clamp(36px,5vw,52px);
+font-size:clamp(38px,5vw,52px);
 line-height:1.1;
 font-weight:800;
-letter-spacing:-1.5px;
+letter-spacing:-1.8px;
 margin:20px 0 15px
 }
 
@@ -208,6 +214,7 @@ height:clamp(240px,38vw,470px);
 background:#e5ded2 url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1800&q=90') center 38%/cover no-repeat
 }
 
+/* COLLECTION */
 .collection-head{
 text-align:center;
 padding:72px 15px 20px
@@ -225,6 +232,7 @@ color:var(--muted);
 margin:0
 }
 
+/* FILTERS */
 .filters{
 display:flex;
 justify-content:center;
@@ -250,6 +258,7 @@ border-color:var(--ink);
 color:white
 }
 
+/* PRODUCTS */
 .products{
 padding:0 7% 82px;
 display:grid;
@@ -274,53 +283,79 @@ display:block;
 transition:transform .5s
 }
 
-.product-card:hover .photo img{transform:scale(1.035)}
+.product-card:hover .photo img{
+transform:scale(1.035)
+}
 
-/* GREEN TEXT ONLY */
+/* GREEN TAG TEXT */
 .tag{
 position:absolute;
 top:12px;
 left:12px;
 background:transparent;
-padding:0;
+padding:7px 9px;
 font-size:9px;
 letter-spacing:1px;
 text-transform:uppercase;
-font-weight:700;
+font-weight:800;
 color:var(--green);
-text-shadow:0 1px 3px #ffffff90;
+text-shadow:0 1px 3px #fff
 }
 
-.details{padding:14px 1px}
+/* PRODUCT DETAILS */
+.details{
+padding:15px 1px
+}
 
 .details h3{
-font-size:18px;
-font-weight:700;
-margin:0 0 8px
+font-size:17px;
+font-weight:800;
+line-height:1.4;
+margin:0 0 10px;
+color:#171715
 }
 
 .meta{
 display:flex;
 justify-content:space-between;
+align-items:center;
 gap:8px;
-color:#706b63;
-font-size:11px
+color:#625e56;
+font-size:12px
 }
 
-.meta strong{color:#191917;font-weight:700}
+.meta strong{
+color:#171715;
+font-size:15px;
+font-weight:800;
+white-space:nowrap
+}
 
+/* VIEW DETAILS BUTTON */
 .view{
-border:0;
-border-bottom:1px solid #191917;
-background:none;
-padding:0 0 5px;
-margin-top:13px;
-font-size:9px;
-letter-spacing:1.4px;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:9px;
+border:1px solid #191917;
+background:transparent;
+color:#191917;
+padding:13px 12px;
+margin-top:16px;
+font-size:10px;
+letter-spacing:1.5px;
 text-transform:uppercase;
-font-weight:700
+font-weight:800;
+transition:.25s
 }
 
+.view:hover{
+background:#191917;
+color:white
+}
+
+/* STORY */
 .story{
 background:#e9e3d9;
 display:grid;
@@ -353,6 +388,7 @@ color:#666158;
 max-width:390px
 }
 
+/* VALUES */
 .values{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -369,8 +405,12 @@ font-weight:700;
 margin-bottom:8px
 }
 
-.values span{font-size:10px;color:var(--muted)}
+.values span{
+font-size:10px;
+color:var(--muted)
+}
 
+/* FOOTER */
 footer{
 background:#191917;
 color:#f4f1eb;
@@ -384,7 +424,10 @@ gap:25px;
 flex-wrap:wrap
 }
 
-.foot-logo{font-size:35px;font-weight:800}
+.foot-logo{
+font-size:35px;
+font-weight:800
+}
 
 .foot-logo small{
 display:block;
@@ -463,6 +506,7 @@ font-size:9px;
 letter-spacing:1.3px
 }
 
+/* FLOATING WHATSAPP */
 .floating-whatsapp{
 position:fixed;
 right:22px;
@@ -488,6 +532,7 @@ height:30px;
 fill:white
 }
 
+/* PRODUCT MODAL */
 .backdrop{
 position:fixed;
 inset:0;
@@ -535,7 +580,10 @@ font-weight:800;
 margin:12px 0
 }
 
-.price{margin:12px 0 18px;font-weight:700}
+.price{
+margin:12px 0 18px;
+font-weight:700
+}
 
 .desc{
 font-size:13px;
@@ -583,6 +631,7 @@ line-height:1.6;
 color:var(--muted)
 }
 
+/* TABLET */
 @media(max-width:850px){
 .products{
 grid-template-columns:repeat(2,minmax(0,1fr));
@@ -591,12 +640,12 @@ gap:18px
 .hero-image{width:92%}
 }
 
+/* MOBILE */
 @media(max-width:600px){
 
 header{
-min-height:76px;
-padding:5px 5%;
-grid-template-columns:auto 1fr auto
+height:76px;
+padding:5px 5%
 }
 
 .brand{
@@ -604,20 +653,18 @@ width:64px;
 height:64px
 }
 
-.menu-button{
-width:38px;
-height:38px;
-font-size:23px;
-}
-
 .menu-dropdown{
-top:47px;
+right:5%;
+width:210px
 }
-
-.right-link{font-size:9px}
 
 .hero{padding:58px 18px 28px}
-.hero h3{font-size:39px}
+
+.hero h3{
+font-size:40px;
+letter-spacing:-1.5px
+}
+
 .hero p{font-size:14px}
 
 .hero-image{
@@ -633,8 +680,26 @@ padding:0 4% 58px;
 gap:15px
 }
 
-.details h3{font-size:16px}
+.details h3{
+font-size:15px;
+line-height:1.4
+}
+
 .meta{font-size:10px}
+.meta strong{font-size:13px}
+
+.tag{
+font-size:8px;
+left:7px;
+top:8px;
+padding:5px
+}
+
+.view{
+font-size:9px;
+padding:12px 5px;
+letter-spacing:1px
+}
 
 .story{grid-template-columns:1fr}
 .story-photo{min-height:310px}
@@ -656,6 +721,7 @@ min-height:245px
 }
 
 .modal-content{padding:24px}
+
 .foot-top{gap:30px}
 
 .floating-whatsapp{
@@ -677,21 +743,20 @@ bottom:16px
 <a class="brand" href="#" aria-label="24 Clothes Home">
 <img
 src="https://i.postimg.cc/9fc6BwTv/1794418799097.jpg"
-alt="24 Clothes Logo"
->
+alt="24 Clothes Logo">
 </a>
 
-<div class="menu-wrap">
-<button class="menu-button" id="menuButton" aria-label="Open navigation menu" aria-expanded="false">⋮</button>
+<button class="menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false">
+<span></span>
+<span></span>
+<span></span>
+</button>
 
-<nav class="menu-dropdown" id="menuDropdown">
+<div class="menu-dropdown" id="menuDropdown">
 <a href="#collection">Shop</a>
 <a href="#story">Our Story</a>
 <a href="#contact">Contact</a>
-</nav>
 </div>
-
-<a class="right-link" href="#collection">Explore Collection ↗</a>
 
 </header>
 
@@ -809,6 +874,7 @@ title="Chat with us on WhatsApp">
 </svg>
 </a>
 
+<!-- PRODUCT MODAL -->
 <div class="backdrop" id="backdrop" role="dialog" aria-modal="true" aria-label="Product details">
 <div class="modal">
 
@@ -838,13 +904,50 @@ title="Chat with us on WhatsApp">
 <script>
 const WHATSAPP_NUMBER="8801724598086";
 
+/* HAMBURGER MENU */
+const menuButton=document.getElementById("menuButton");
+const menuDropdown=document.getElementById("menuDropdown");
+
+function toggleMenu(){
+const isOpen=menuDropdown.classList.toggle("show");
+menuButton.classList.toggle("active",isOpen);
+menuButton.setAttribute("aria-expanded",isOpen);
+}
+
+menuButton.addEventListener("click",toggleMenu);
+
+menuDropdown.querySelectorAll("a").forEach(link=>{
+link.addEventListener("click",()=>{
+menuDropdown.classList.remove("show");
+menuButton.classList.remove("active");
+menuButton.setAttribute("aria-expanded","false");
+});
+});
+
+document.addEventListener("click",e=>{
+if(!menuButton.contains(e.target)&&!menuDropdown.contains(e.target)){
+menuDropdown.classList.remove("show");
+menuButton.classList.remove("active");
+menuButton.setAttribute("aria-expanded","false");
+}
+});
+
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape"){
+menuDropdown.classList.remove("show");
+menuButton.classList.remove("active");
+menuButton.setAttribute("aria-expanded","false");
+}
+});
+
+/* PRODUCTS */
 const products=[
 {
 id:1,
 name:"Essential Boxy T-Shirt",
 category:"T-Shirts",
 price:650,
-tag:"New arrival",
+tag:"New Arrival",
 image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",
 sizes:["S","M","L","XL"],
 description:"A relaxed everyday silhouette with a clean, minimal finish."
@@ -854,7 +957,7 @@ id:2,
 name:"Classic Henley T-Shirt",
 category:"T-Shirts",
 price:750,
-tag:"Everyday essential",
+tag:"Everyday Essential",
 image:"https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=85",
 sizes:["S","M","L","XL"],
 description:"A timeless Henley-inspired style for effortless everyday dressing."
@@ -864,7 +967,7 @@ id:3,
 name:"Relaxed Boxy Shirt",
 category:"Shirts",
 price:950,
-tag:"New arrival",
+tag:"New Arrival",
 image:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=900&q=85",
 sizes:["S","M","L","XL"],
 description:"An easy, relaxed fit with a versatile and understated look."
@@ -874,7 +977,7 @@ id:4,
 name:"Everyday Baggy Jeans",
 category:"Denim",
 price:1450,
-tag:"New arrival",
+tag:"New Arrival",
 image:"https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=85",
 sizes:["28","30","32","34","36"],
 description:"A relaxed denim silhouette designed for everyday movement."
@@ -903,7 +1006,9 @@ el.innerHTML=`
 <span>${p.category}</span>
 <strong>${money(p.price)}</strong>
 </div>
-<button class="view" type="button">View Details ↗</button>
+<button class="view" type="button">
+View Details <span aria-hidden="true">↗</span>
+</button>
 </div>
 `;
 
@@ -919,70 +1024,4 @@ document.getElementById("modalImage").src=p.image;
 document.getElementById("modalImage").alt=p.name;
 document.getElementById("modalName").textContent=p.name;
 document.getElementById("modalPrice").textContent=money(p.price);
-document.getElementById("modalDesc").textContent=p.description;
-
-document.getElementById("size").innerHTML=
-'<option value="">Choose your size</option>'+
-p.sizes.map(s=>`<option value="${s}">${s}</option>`).join("");
-
-document.getElementById("qty").value=1;
-document.getElementById("backdrop").classList.add("open");
-}
-
-function closeModal(){
-document.getElementById("backdrop").classList.remove("open");
-}
-
-document.getElementById("close").onclick=closeModal;
-
-document.getElementById("backdrop").onclick=e=>{
-if(e.target.id==="backdrop")closeModal();
-};
-
-document.querySelectorAll(".filter").forEach(b=>{
-b.onclick=()=>{
-document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));
-b.classList.add("active");
-render(b.dataset.filter);
-};
-});
-
-/* THREE DOT MENU FUNCTION */
-const menuButton=document.getElementById("menuButton");
-const menuDropdown=document.getElementById("menuDropdown");
-
-menuButton.onclick=()=>{
-const isOpen=menuDropdown.classList.toggle("open");
-menuButton.setAttribute("aria-expanded",isOpen);
-};
-
-menuDropdown.querySelectorAll("a").forEach(link=>{
-link.onclick=()=>{
-menuDropdown.classList.remove("open");
-menuButton.setAttribute("aria-expanded","false");
-};
-};
-
-document.addEventListener("click",e=>{
-if(!e.target.closest(".menu-wrap")){
-menuDropdown.classList.remove("open");
-menuButton.setAttribute("aria-expanded","false");
-}
-});
-
-document.getElementById("order").onclick=()=>{
-if(!selected)return;
-
-const size=document.getElementById("size").value;
-const qty=Math.max(1,parseInt(document.getElementById("qty").value,10)||1);
-
-if(!size){
-alert("Please select a size first.");
-return;
-}
-
-const msg=`Hello 24 Clothes! I would like to order:
-
-Product: ${selected.name}
-Price: ${money(selected.price)}
-Siz
+document.getElementById("modalDes
