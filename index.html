@@ -14,7 +14,8 @@
 --ink:#171715;
 --muted:#77736c;
 --line:#dcd7ce;
---white:#fffdf9
+--white:#fffdf9;
+--green:#27834b;
 }
 
 *{
@@ -50,7 +51,6 @@ border-bottom:1px solid var(--line);
 background:var(--bg)
 }
 
-/* LARGE CIRCULAR HEADER LOGO */
 .brand{
 justify-self:start;
 width:76px;
@@ -74,16 +74,66 @@ display:block;
 padding:2px;
 }
 
-nav{
-display:flex;
-gap:30px;
-font-size:10px;
-letter-spacing:1.5px;
-text-transform:uppercase;
-font-weight:600
+/* THREE DOT MENU */
+.menu-wrap{
+justify-self:center;
+position:relative;
 }
 
-nav a:hover,.right-link:hover{opacity:.55}
+.menu-button{
+width:42px;
+height:42px;
+border:1px solid var(--line);
+border-radius:50%;
+background:transparent;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+line-height:1;
+color:var(--ink);
+transition:.2s;
+}
+
+.menu-button:hover{
+background:var(--ink);
+color:white;
+}
+
+.menu-dropdown{
+position:absolute;
+top:52px;
+left:50%;
+transform:translateX(-50%);
+width:155px;
+background:var(--white);
+border:1px solid var(--line);
+box-shadow:0 8px 25px #00000012;
+display:none;
+flex-direction:column;
+z-index:50;
+}
+
+.menu-dropdown.open{
+display:flex;
+}
+
+.menu-dropdown a{
+padding:14px 17px;
+font-size:10px;
+letter-spacing:1.3px;
+text-transform:uppercase;
+font-weight:600;
+border-bottom:1px solid #eee9e0;
+}
+
+.menu-dropdown a:last-child{
+border-bottom:0;
+}
+
+.menu-dropdown a:hover{
+background:#f0ece4;
+}
 
 .right-link{
 justify-self:end;
@@ -92,6 +142,8 @@ letter-spacing:1px;
 text-transform:uppercase;
 font-weight:600
 }
+
+.right-link:hover{opacity:.55}
 
 .hero{
 text-align:center;
@@ -111,6 +163,14 @@ font-size:clamp(46px,7vw,76px);
 line-height:.98;
 font-weight:800;
 letter-spacing:-2.8px;
+margin:20px 0 15px
+}
+
+.hero h3{
+font-size:clamp(36px,5vw,52px);
+line-height:1.1;
+font-weight:800;
+letter-spacing:-1.5px;
 margin:20px 0 15px
 }
 
@@ -216,16 +276,19 @@ transition:transform .5s
 
 .product-card:hover .photo img{transform:scale(1.035)}
 
+/* GREEN TEXT ONLY */
 .tag{
 position:absolute;
 top:12px;
 left:12px;
-background:#f8f5ee;
-padding:7px 9px;
-font-size:8px;
+background:transparent;
+padding:0;
+font-size:9px;
 letter-spacing:1px;
 text-transform:uppercase;
-font-weight:700
+font-weight:700;
+color:var(--green);
+text-shadow:0 1px 3px #ffffff90;
 }
 
 .details{padding:14px 1px}
@@ -308,7 +371,6 @@ margin-bottom:8px
 
 .values span{font-size:10px;color:var(--muted)}
 
-/* FOOTER */
 footer{
 background:#191917;
 color:#f4f1eb;
@@ -401,7 +463,6 @@ font-size:9px;
 letter-spacing:1.3px
 }
 
-/* FLOATING WHATSAPP */
 .floating-whatsapp{
 position:fixed;
 right:22px;
@@ -427,7 +488,6 @@ height:30px;
 fill:white
 }
 
-/* PRODUCT MODAL */
 .backdrop{
 position:fixed;
 inset:0;
@@ -544,21 +604,20 @@ width:64px;
 height:64px
 }
 
-nav{
-justify-self:center;
-gap:13px;
-font-size:8px
+.menu-button{
+width:38px;
+height:38px;
+font-size:23px;
 }
 
-.right-link{font-size:0}
-
-.right-link:after{
-content:"SHOP";
-font-size:9px
+.menu-dropdown{
+top:47px;
 }
+
+.right-link{font-size:9px}
 
 .hero{padding:58px 18px 28px}
-h1{font-size:51px}
+.hero h3{font-size:39px}
 .hero p{font-size:14px}
 
 .hero-image{
@@ -622,11 +681,15 @@ alt="24 Clothes Logo"
 >
 </a>
 
-<nav>
+<div class="menu-wrap">
+<button class="menu-button" id="menuButton" aria-label="Open navigation menu" aria-expanded="false">⋮</button>
+
+<nav class="menu-dropdown" id="menuDropdown">
 <a href="#collection">Shop</a>
 <a href="#story">Our Story</a>
 <a href="#contact">Contact</a>
 </nav>
+</div>
 
 <a class="right-link" href="#collection">Explore Collection ↗</a>
 
@@ -636,7 +699,7 @@ alt="24 Clothes Logo"
 
 <section class="hero">
 <div class="eyebrow">24 Clothes · Everyday, elevated</div>
-<h1>Dress your<br>own story.</h1>
+<h3>Dream Your Style 𖹭</h3>
 <p>Timeless essentials. Modern identity. Discover thoughtfully selected pieces made for your everyday style.</p>
 <a class="hero-cta" href="#collection">Explore Collection</a>
 </section>
@@ -664,7 +727,7 @@ alt="24 Clothes Logo"
 <div class="story-photo" role="img" aria-label="Modern everyday fashion"></div>
 <div class="story-copy">
 <div class="eyebrow">The 24 Clothes point of view</div>
-<h2>Less, but<br>better.</h2>
+<h2>Less, but better.</h2>
 <p>Great style lives in the details: the right fit, the feel of the fabric and pieces you reach for again and again. Welcome to 24 Clothes.</p>
 </div>
 </section>
@@ -884,6 +947,29 @@ render(b.dataset.filter);
 };
 });
 
+/* THREE DOT MENU FUNCTION */
+const menuButton=document.getElementById("menuButton");
+const menuDropdown=document.getElementById("menuDropdown");
+
+menuButton.onclick=()=>{
+const isOpen=menuDropdown.classList.toggle("open");
+menuButton.setAttribute("aria-expanded",isOpen);
+};
+
+menuDropdown.querySelectorAll("a").forEach(link=>{
+link.onclick=()=>{
+menuDropdown.classList.remove("open");
+menuButton.setAttribute("aria-expanded","false");
+};
+};
+
+document.addEventListener("click",e=>{
+if(!e.target.closest(".menu-wrap")){
+menuDropdown.classList.remove("open");
+menuButton.setAttribute("aria-expanded","false");
+}
+});
+
 document.getElementById("order").onclick=()=>{
 if(!selected)return;
 
@@ -899,23 +985,4 @@ const msg=`Hello 24 Clothes! I would like to order:
 
 Product: ${selected.name}
 Price: ${money(selected.price)}
-Size: ${size}
-Quantity: ${qty}
-Total: ${money(selected.price*qty)}
-
-Product Photo: ${selected.image}
-
-Please confirm availability and delivery details.`;
-
-window.open(
-"https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(msg),
-"_blank"
-);
-};
-
-document.getElementById("year").textContent=new Date().getFullYear();
-render();
-</script>
-
-</body>
-</html>
+Siz
